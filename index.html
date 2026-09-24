@@ -1,20 +1,419 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ff6900">
   <meta name="description" content="HarnessPAI: An Evolving Harness for Physical AI. Executable task programs that improve through rollout feedback, across seven embodied settings.">
   <meta property="og:title" content="HarnessPAI: An Evolving Harness for Physical AI">
   <meta property="og:description" content="Darwin Agent. Execute programs. Learn from outcomes. Evolve the harness.">
-  <meta property="og:image" content="assets/images/framework.webp">
+  <meta property="og:image" content="assets/images/intro.webp">
   <title>HarnessPAI | Darwin Agent</title>
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
-  <script src="assets/lucide.min.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="assets/lucide.min.js" defer=""></script>
+  <script src="script.js" defer=""></script>
 </head>
 <body>
-Comming soon...
-</body>
-</html>
+  <a class="skip-link" href="#abstract">Skip to content</a>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#top" aria-label="HarnessPAI home">Harness<span>PAI</span><span class="brand-divider"></span><small>Darwin Agent</small></a>
+      <nav class="top-nav" aria-label="Main navigation" id="main-nav">
+        <a href="#abstract">Abstract</a>
+        <a href="#overview">Overview</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#citation">Citation</a>
+      </nav>
+      <button class="icon-button menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav" title="Open navigation"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
+  <nav class="side-nav" aria-label="Section navigation">
+    <a href="#abstract">Abstract</a>
+    <a href="#overview">Overview</a>
+    <a href="#motivation">Motivation</a>
+    <a href="#method">Method</a>
+    <a href="#results">Results</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#citation">Citation</a>
+  </nav>
+
+  <main id="top">
+    <section class="masthead container" aria-labelledby="project-title">
+      <p class="eyebrow">CODE, MEMORY &amp; PHYSICAL INTELLIGENCE</p>
+      <h1 id="project-title">Harness<span>PAI</span></h1>
+      <p class="project-subtitle">An Evolving Harness for Physical AI</p>
+      <p class="team">Darwin Agent</p>
+      <div class="resource-links" aria-label="Project resources">
+        <a class="resource" href="assets/HarnessPAI_DarwinAgent.pdf" target="_blank" rel="noopener"><i data-lucide="file-text"></i> Paper <span>PDF</span></a>
+        <button class="resource" disabled=""><i data-lucide="code-2"></i> Code <span>Coming soon</span></button>
+      </div>
+      <figure class="intro-figure">
+        <div class="figure-image"><img src="assets/images/intro.webp" alt="HarnessPAI spans seven experimental settings, four embodiment categories, and five downstream interfaces, combining memory, open-loop program execution, and closed-loop evolution" width="2556" height="1116" fetchpriority="high" data-zoom=""></div>
+        <figcaption>One executable, evolving harness across models and embodiments.</figcaption>
+      </figure>
+    </section>
+
+    <section id="abstract" class="section container abstract-section" aria-labelledby="abstract-title">
+      <div class="section-heading"><span class="section-number">ABSTRACT</span><h2 id="abstract-title">Physical intelligence beyond the action model.</h2></div>
+      <div class="abstract-copy">
+        <p>Physical AI aims to build embodied agents that perceive the world, understand and reason about it, and decide how to act. Yet the field has focused primarily on the action model that maps observations to low-level controls. Even strong action models remain vulnerable to scene perturbations and long-horizon tasks, motivating explicit support for perception and reasoning.</p>
+        <p>We introduce <strong>HarnessPAI</strong>, a model- and embodiment-agnostic harness that treats code as the executable and evolvable interface around an action primitive. Within a rollout, a fixed program guides and checks execution. Across rollouts, execution feedback revises the program and distills failures into reusable skills.</p>
+        <p>Across robot arms, household robots, a robot vacuum, and a legged agent, HarnessPAI improves task completion without retraining the underlying model, including <strong>+61.6 percentage points on LIBERO-PRO</strong> and <strong>+27.2 points on RoboCasa atomic tasks</strong>. Once selected, the program runs without online high-level LLM deliberation. In a separate downstream experiment, fine-tuning π<sub>0.5</sub> on successful harness trajectories improves LIBERO-PRO success by <strong>38.8 points</strong>. These results point toward physical agents that integrate perception, task reasoning, and action through executable, verifiable, feedback-driven programs.</p>
+      </div>
+    </section>
+
+    <section id="overview" class="section container" aria-labelledby="overview-title">
+      <div class="section-heading"><span class="section-number">01 / OVERVIEW</span><h2 id="overview-title">The model is a primitive.<br>The program completes the task.</h2></div>
+      <p class="section-intro">Physical tasks demand more than an action prediction. HarnessPAI builds executable programs that coordinate perception, geometric reasoning, control, learned action models, and success checks. The program stays fixed within a rollout; feedback improves it between rollouts.</p>
+      <div class="principles">
+        <article><i data-lucide="blocks"></i><h3>Compose capabilities</h3><p>Combine learned policies with explicit perception, geometry, and control APIs.</p></article>
+        <article><i data-lucide="refresh-cw"></i><h3>Evolve executable code</h3><p>Diagnose failures, revise isolated candidates, and validate before promotion.</p></article>
+        <article><i data-lucide="library"></i><h3>Retain repair knowledge</h3><p>Keep task programs, structured skills, and maintained implementations for reuse.</p></article>
+      </div>
+      <figure class="paper-figure">
+        <div class="figure-image"><img src="assets/images/framework.webp" alt="HarnessPAI architecture: task memory, structured skill memory, executable code memory, and a library of perception, control, and model primitives" width="2200" height="701" loading="lazy" data-zoom=""></div>
+        <figcaption><span></span> Persistent memories connect the task to an executable program and its action primitives.</figcaption>
+      </figure>
+      <div class="overview-flow" id="overview-state-flow">
+        <h3>One task graph, different control units.</h3>
+        <p>The task graph connects grounding, approach, grasp, lift, transport, and placement. At each stage, the fixed program invokes the appropriate perception or control unit: SAM3 and Molmo for grounding, control APIs for approach, lift, and transport, and the VLA for grasp and placement.</p>
+        <figure class="demo-group" data-demo-group="">
+          <div class="demo-heading"><h4>LIBERO Spatial · stage-by-stage execution</h4><div class="demo-controls"></div></div>
+          <video controls="" playsinline="" preload="none" width="776" height="516" poster="assets/images/overview-state-flow.webp" aria-label="Six-stage task graph: grounding, approach, grasp, lift, transport and placement, with the active stage highlighted"><source src="assets/videos/overview-state-flow.mp4" type="video/mp4"></video>
+          <figcaption>The highlighted panel follows the active stage. Different stages use different units within the same retained program; the program itself is not rewritten during this rollout.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="motivation" class="section band" aria-labelledby="motivation-title">
+      <div class="container">
+        <div class="section-heading"><span class="section-number">02 / MOTIVATION</span><h2 id="motivation-title">Three questions behind the HarnessPAI.</h2></div>
+        <p class="section-intro">Action competence is only one part of a physical agent. The examples in Section 3 of the manuscript motivate explicit grounding, stable execution, and a program that can improve from experience.</p>
+
+        <article class="motivation-question" id="motivation-grounding">
+          <div class="question-heading"><span>2.1</span><h3>Why Do Physical Models Need a Harness?</h3></div>
+          <p>Strong action performance does not guarantee reliable task completion when an instruction changes, a target moves, or a contact requires precision. HarnessPAI complements the frozen action model with explicit target grounding, geometric reasoning, and execution checks.</p>
+          <div class="motivation-case" id="motivation-language">
+            
+            <h4>One word changes which bowl to pick.</h4>
+            <blockquote class="task-instruction">“Pick up the black bowl <mark>not between</mark> the plate and the ramekin and place it on the plate.”</blockquote>
+            <p>Adding “not” before “between” changes the intended target to a different bowl, yet π<sub>0.5</sub> still grasps the bowl specified by the original instruction. HarnessPAI re-grounds the instruction in code and grasps the correct bowl. The manuscript also shows that externally masking the scene does not resolve the error; the pair below shows the unmasked rollouts.</p>
+            <div class="layout-comparisons">
+              <div class="demo-group baseline-reference" data-demo-group="">
+                <div class="demo-heading"><h4>Pure VLA · original instruction</h4><div class="demo-controls"></div></div>
+                <video controls="" playsinline="" preload="none" width="512" height="588" poster="assets/images/motivation-language-standard.webp" aria-label="pure VLA succeeds on original Spatial Task 0, picking the bowl between the plate and ramekin before not is added"><source src="assets/videos/motivation-language-standard.mp4" type="video/mp4"></video>
+                <p class="media-note">Original instruction: “Pick up the black bowl between the plate and the ramekin and place it on the plate.” Pure VLA ep0 success, before adding “not”; complete rollout at 2×.</p>
+              </div>
+              <div class="demo-group composite-demo" data-demo-group="">
+                <div class="demo-heading"><h4>With “not” · comparison</h4><div class="demo-controls"></div></div>
+                <div class="comparison-legend"><span>Pure VLA<small>Normal · wrong bowl</small></span><span>HarnessPAI<small>Normal · correct bowl</small></span></div>
+                <video controls="" playsinline="" preload="none" width="1024" height="588" poster="assets/images/motivation-language.webp" aria-label="pure VLA episode 6 grasps the wrong bowl; HarnessPAI episode 9 grasps the correct bowl"><source src="assets/videos/motivation-language.mp4" type="video/mp4"></video>
+                <p class="media-note">2× source playback. Pure VLA ep6 vs. HarnessPAI ep9. Paper Spatial / Task 0: 0% → 92% (+92 pp), measured over 50 trials per method, not from this selected pair.</p>
+              </div>
+            </div>
+            <p class="media-note">The original-instruction reference and the negated-instruction comparison use different episodes; per-episode positions vary. They are not an identical-initial-state comparison.</p>
+          </div>
+          <div class="motivation-case" id="motivation-visual">
+            
+            <h4>The instruction stays the same. The destination moves.</h4>
+            <p>The VLA succeeds in the original layout. After the plate and the other black bowl swap positions, it initially carries the target toward the plate’s old location, then fails to complete placement. HarnessPAI re-locates the destination and succeeds in the swapped layout.</p>
+            <div class="layout-comparisons">
+              <div class="demo-group baseline-reference" data-demo-group="">
+                <div class="demo-heading"><h4>Pure VLA · original layout</h4><div class="demo-controls"></div></div>
+                <video controls="" playsinline="" preload="none" width="512" height="588" poster="assets/images/motivation-visual-standard.webp" aria-label="pure VLA succeeds with the plate and bowl in their original positions"><source src="assets/videos/motivation-visual-standard.mp4" type="video/mp4"></video>
+                <p class="media-note">Pure VLA success before the swap. Standalone baseline reference, 2× source playback.</p>
+              </div>
+              <div class="demo-group composite-demo" data-demo-group="">
+                <div class="demo-heading"><h4>Swapped layout · comparison</h4><div class="demo-controls"></div></div>
+                <div class="comparison-legend"><span>Pure VLA<small>Swapped · failure</small></span><span>HarnessPAI<small>Swapped · success</small></span></div>
+                <video controls="" playsinline="" preload="none" width="1024" height="588" poster="assets/images/motivation-visual-swap.webp" aria-label="swapped layout: pure VLA moves toward the old plate location and fails; HarnessPAI places the bowl on the relocated plate"><source src="assets/videos/motivation-visual-swap.mp4" type="video/mp4"></video>
+                <p class="media-note">Plate and distractor bowl swapped on both sides. Complete rollouts at 2×; HarnessPAI’s source masking retained. Exact initial-state equality is unverified.</p>
+                <p class="media-note">Paper Spatial / Swap / Task 1: 50% → 100% (+50 pp), measured over 50 trials per method, not from this selected pair.</p>
+              </div>
+            </div>
+            <p class="media-note">Recorded instruction (Spatial / Task 1): “Pick up the black bowl next to the ramekin and place it on the plate.” <a href="#libero-pro">LIBERO-PRO aggregate results</a>.</p>
+          </div>
+          <div class="motivation-case" id="motivation-precision">
+            
+            <h4>Reaching the button is not the same as pressing it.</h4>
+            <p>On RoboCasa’s microwave task, the evaluated WAM reaches toward the small start button but fails to press it in the illustrated rollout. HarnessPAI completes the button-pressing task.</p>
+            <div class="demo-tabs motivation-tabs" data-demo-tabs="">
+              <div class="tab-list" role="tablist" aria-label="corresponding camera columns">
+                <button id="tab-microwave-column2" role="tab" aria-selected="true" aria-controls="panel-microwave-column2">Head camera </button>
+                <button id="tab-microwave-column3" role="tab" aria-selected="false" aria-controls="panel-microwave-column3" tabindex="-1">Wrist camera </button>
+              </div>
+              <div id="panel-microwave-column2" role="tabpanel" aria-labelledby="tab-microwave-column2">
+                <div class="demo-group composite-demo" data-demo-group="">
+                  <div class="demo-heading"><h4>Turn on the microwave · head camera</h4><div class="demo-controls"></div></div>
+                  <div class="comparison-legend"><span>Pure WAM<small>Head camera · failure</small></span><span>HarnessPAI<small>Head camera · success</small></span></div>
+                  <video controls="" playsinline="" preload="none" width="1024" height="460" poster="assets/images/motivation-microwave-column2.webp" aria-label="Head camera: Pure WAM failure on the left, HarnessPAI success on the right"><source src="assets/videos/motivation-microwave-column2.mp4" type="video/mp4"></video>
+                </div>
+              </div>
+              <div id="panel-microwave-column3" role="tabpanel" aria-labelledby="tab-microwave-column3" hidden="">
+                <div class="demo-group composite-demo" data-demo-group="">
+                  <div class="demo-heading"><h4>Turn on the microwave · wrist camera</h4><div class="demo-controls"></div></div>
+                  <div class="comparison-legend"><span>Pure WAM<small>Wrist camera · failure</small></span><span>HarnessPAI<small>Wrist camera · success</small></span></div>
+                  <video controls="" playsinline="" preload="none" width="1024" height="460" poster="assets/images/motivation-microwave-column3.webp" aria-label="Wrist camera: Pure WAM failure on the left, HarnessPAI success on the right"><source src="assets/videos/motivation-microwave-column3.mp4" type="video/mp4"></video>
+                </div>
+              </div>
+              <p class="media-note">Each pair uses the complete corresponding column from the two three-view recordings, preserving aspect ratios. 1× source playback; the shorter clip holds its final frame. Different source sampling means clip lengths do not measure execution speed. <a href="#robocasa">RoboCasa aggregate results</a>.</p>
+            </div>
+          </div>
+          <p class="scope-note">These examples motivate the harness; they do not establish that training eroded language or vision, or isolate a single cause of fine-manipulation failure.</p>
+        </article>
+
+        <article class="motivation-question" id="motivation-execution">
+          <div class="question-heading"><span>2.2</span><h3>Why Open-Loop Execution?</h3></div>
+          <p>Physical actions can leave persistent changes. A lost or overturned pot may leave no useful recovery within the rollout. Grounding and checks should therefore aim to prevent high-risk mistakes and improve first-attempt success.</p>
+          <div class="demo-group composite-demo compact-composite" data-demo-group="">
+            <div class="demo-heading"><h4>Irreversible pot-handling error</h4><div class="demo-controls"></div></div>
+            <div class="comparison-legend"><span>Illustrative failure<small>Pot dropped</small></span><span>HarnessPAI<small>Successful lift</small></span></div>
+            <video controls="" playsinline="" preload="none" width="704" height="428" poster="assets/images/irreversible-comparison.webp" aria-label="Illustrative pot drop on the left and successful HarnessPAI two-arm lift on the right"><source src="assets/videos/irreversible-comparison.mp4" type="video/mp4"></video>
+            <p class="media-note">2× source playback. Left: illustrative scripted drop in robosuite TwoArmLift, with the pot lost below the table. Right: successful lift. This is not a pure-WAM baseline or a RoboCasa benchmark comparison.</p>
+          </div>
+          <div class="execution-timescales">
+            <div><i data-lucide="play"></i><h4>Within one rollout</h4><p>Keep the program fixed. Read observations, ground targets, and run predefined checks and recovery.</p></div>
+            <div><i data-lucide="refresh-cw"></i><h4>Between rollouts</h4><p>Use outcomes to revise the code, then validate the next candidate in a resettable experimental environment.</p></div>
+          </div>
+          <p class="scope-note">“Open-loop” is a program-level distinction, not blind action playback. It does not remove feedback control or guarantee safety; real-world resets cannot be assumed.</p>
+        </article>
+
+        <article class="motivation-question" id="motivation-code">
+          <div class="question-heading"><span>2.3</span><h3>Why Use Code as a Physical Harness?</h3></div>
+          <p>Code makes perception, grounding, action, and checks explicit within one control structure. It can invoke a learned VLA or WAM as a primitive, or use direct control APIs when no action model is available. The program executes within a rollout and evolves from feedback between rollouts.</p>
+          <div class="principles code-properties">
+            <article><i data-lucide="terminal"></i><h4>Executable</h4><p>Ground the scene, compose actions, and check task success during execution.</p></article>
+            <article><i data-lucide="scan-search"></i><h4>Inspectable</h4><p>Locate and diagnose perception, grounding, and recovery decisions in an explicit control structure.</p></article>
+            <article><i data-lucide="git-branch"></i><h4>Evolvable</h4><p>Revise a failing stage from feedback, re-evaluate, and retain a validated implementation.</p></article>
+          </div>
+          <p>HarnessPAI targets <strong>one task executed many times</strong>: development produces a reusable program, while a repair-skill library preserves lessons such as re-localizing after a missed grasp or checking a button press before proceeding. Repeated deployment offers opportunities to improve the program; it does not relax the requirements of each physical attempt.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" class="section" aria-labelledby="method-title">
+      <div class="container">
+        <div class="section-heading"><span class="section-number">03 / METHOD</span><h2 id="method-title">Execute. Diagnose. Evolve.</h2></div>
+        <p class="section-intro">High-level reasoning belongs in program development, not at every action step. During a rollout, the program can read observations, branch, check outcomes, and recover without online high-level LLM deliberation.</p>
+        <div class="method-flow">
+          <article><span class="step-index">01</span><h3>Define</h3><p>Specify the task, permitted primitives, and an authoritative success contract.</p></article>
+          <article><span class="step-index">02</span><h3>Execute</h3><p>Preflight an isolated candidate, then run it across a batch of environments.</p></article>
+          <article><span class="step-index">03</span><h3>Diagnose</h3><p>Use rollout evidence and VLM feedback to identify the failing program stage.</p></article>
+          <article><span class="step-index">04</span><h3>Validate &amp; retain</h3><p>Revise the implementation, check success, and preserve validated code and skills.</p></article>
+        </div>
+        <figure class="paper-figure">
+          <div class="figure-image"><img src="assets/images/close_loop.webp" alt="Optional initialization stages feed a coding agent, which iterates through rollouts, diagnosis, code repair, skill management, and validation" width="2200" height="1045" loading="lazy" data-zoom=""></div>
+          <figcaption><span></span> Optional workflow extraction, policy evaluation, and perception initialization support the required program-evolution loop.</figcaption>
+        </figure>
+        <div class="method-details">
+          <details><summary>What is fixed during execution?<i data-lucide="plus"></i></summary><div class="detail-body"><p>The executable task program is fixed for one rollout. Sensor-driven branches and predefined recovery remain active. “Open-loop execution” refers to the program-level plan, not blind action playback or the absence of control feedback.</p></div></details>
+          <details><summary>What does a skill store?<i data-lucide="plus"></i></summary><div class="detail-body"><p>A skill is a workflow-node-indexed account of a problem and its repair, linked to maintained executable code. Task Memory retrieves programs, Structured Skill Memory retrieves repair knowledge, and Executable Code Memory preserves implementations.</p><p>For example, aligning an object to a basket mouth requires the upper rim, not the basket-body centroid. A grounding repair can correct the target without rewriting the placement controller.</p></div></details>
+          <details><summary>When does a candidate become the retained program?<i data-lucide="plus"></i></summary><div class="detail-body"><p>VLM diagnosis guides revision, while the environment's deterministic success condition gates promotion. Crashes and timeouts count as failures. Evolution ends when development rollouts meet the contract or the round budget is exhausted; unsuccessful candidates do not replace the validated program.</p></div></details>
+          <details><summary>How can the harness improve the action model?<i data-lucide="plus"></i></summary><div class="detail-body"><p>Successful rollouts supply success-filtered demonstrations for supervised fine-tuning. This is a downstream use of the evolved harness, separate from the main frozen-backend experiments. The reported work does not establish a complete bidirectional harness-model co-evolution cycle.</p></div></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="section container" aria-labelledby="results-title">
+      <div class="section-heading"><span class="section-number">04 / RESULTS &amp; DEMOS</span><h2 id="results-title">Seven settings. One program-level idea.</h2></div>
+      <p class="section-intro">From single-arm manipulation to a mobile household robot, a cleaning robot, and a legged agent: evolve the harness around the available action interface.</p>
+      <div class="experiment-summary">
+        <table class="experiment-table" id="experiment-table">
+          <caption>Reported results at a glance</caption>
+          <thead><tr><th scope="col">Experiment</th><th scope="col">Reference</th><th scope="col">HarnessPAI</th><th scope="col">Measure / scope</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><a href="#libero-pro">LIBERO-PRO</a></th><td>34.9% <small>(π<sub>0.5</sub>)</small></td><td class="ours">96.5%</td><td>Success · Swap + Task</td></tr>
+            <tr><th scope="row"><a href="#robocasa">RoboCasa</a></th><td>65.0% <small>(WorldDreamer)</small></td><td class="ours">92.2%</td><td>Success · 18 Atomic-Seen tasks</td></tr>
+            <tr><th scope="row"><a href="#robosuite">robosuite</a></th><td>81.0% <small>(ASPIRE)</small></td><td class="ours">96.3%</td><td>Success · 7 tasks</td></tr>
+            <tr><th scope="row"><a href="#libero">LIBERO</a></th><td>96.9% <small>(π<sub>0.5</sub>)</small></td><td class="ours">98.1%</td><td>Success · 3 suites</td></tr>
+            <tr><th scope="row"><a href="#behavior">BEHAVIOR-1K</a></th><td>84% / 72% <small>(zero-shot)</small></td><td class="ours">100% / 92%</td><td>Radio / soda can · after adaptation</td></tr>
+            <tr><th scope="row"><a href="#vacusim">VacuSim</a></th><td>4.90% / 11.7% <small>(40 × 40 campaign start / 25 × 25 initial policy)</small></td><td class="ours">63.76% / 53.92%</td><td>Coverage · 40 × 40 / 25 × 25 maps</td></tr>
+            <tr><th scope="row"><a href="#microduck">MicroDuck</a></th><td>Up to 0.8 m drift <small>(PPO Walker)</small></td><td class="ours">Near-zero lateral error</td><td>Reported straight-line trajectory</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+
+      <article id="libero-pro" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">ROBUST MANIPULATION · VLA</p><h3>LIBERO-PRO</h3></div><span class="result-callout">+61.6 <small>percentage points</small></span></div>
+        <p>Controlled changes to object positions and task instructions expose failures hidden by familiar layouts. HarnessPAI improves the same π<sub>0.5</sub> action backend from <strong>34.9% to 96.5%</strong> across the reported perturbations.</p>
+        <div class="comparison-chart" role="img" aria-label="LIBERO-PRO success: base policy 34.9 percent; HarnessPAI 96.5 percent">
+          <div class="chart-label"><span>Success rate</span><span>0–100%</span></div>
+          <div class="bar-row"><span>π<sub>0.5</sub></span><div class="bar-track"><div class="bar baseline" style="--value:34.9%"></div></div><strong>34.9%</strong></div>
+          <div class="bar-row"><span>HarnessPAI</span><div class="bar-track"><div class="bar" style="--value:96.5%"></div></div><strong>96.5%</strong></div>
+        </div>
+        <div class="inline-facts"><span><b>95.7%</b> Swap</span><span><b>97.4%</b> Task</span><span><b>60</b> perturbed tasks</span></div>
+        <div class="demo-tabs" data-demo-tabs="">
+          <div class="tab-list" role="tablist" aria-label="LIBERO-PRO suites">
+            <button role="tab" id="tab-object" aria-controls="panel-object" aria-selected="true">Object <small>Task</small></button>
+            <button role="tab" id="tab-goal" aria-controls="panel-goal" aria-selected="false" tabindex="-1">Goal <small>Task</small></button>
+            <button role="tab" id="tab-spatial" aria-controls="panel-spatial" aria-selected="false" tabindex="-1">Spatial <small>Swap</small></button>
+          </div>
+          <div role="tabpanel" id="panel-object" aria-labelledby="tab-object">
+            <div class="demo-group composite-demo" data-demo-group="">
+              <div class="demo-heading"><h4>Pick up the cream cheese and place it in the basket</h4><div class="demo-controls"></div></div>
+              <div class="comparison-legend"><span>Pure VLA<small>Wrong object</small></span><span>HarnessPAI<small>Success</small></span></div>
+              <video controls="" playsinline="" preload="none" width="1024" height="588" poster="assets/images/pro-object-comparison.webp" aria-label="Object task: VLA picks the wrong object on the left; HarnessPAI succeeds on the right"><source src="assets/videos/pro-object-comparison.mp4" type="video/mp4"></video>
+              <div class="demo-metric"><strong>10.8% → 99.2%</strong><span>Object / Task subset · +88.4 pp</span></div>
+              <p class="media-note">Selected task: cream cheese, not alphabet soup. Paper Task 0: 0% → 100%. The subset score above averages all 10 Object / Task tasks.</p>
+            </div>
+          </div>
+          <div role="tabpanel" id="panel-goal" aria-labelledby="tab-goal" hidden="">
+            <div class="demo-group composite-demo" data-demo-group="">
+              <div class="demo-heading"><h4>Put the plate on the stove</h4><div class="demo-controls"></div></div>
+              <div class="comparison-legend"><span>Pure VLA<small>Wrong object</small></span><span>HarnessPAI<small>Success</small></span></div>
+              <video controls="" playsinline="" preload="none" width="1024" height="588" poster="assets/images/pro-goal-comparison.webp" aria-label="Goal task: VLA moves a bowl on the left; HarnessPAI moves the requested plate on the right"><source src="assets/videos/pro-goal-comparison.mp4" type="video/mp4"></video>
+              <div class="demo-metric"><strong>29.0% → 97.8%</strong><span>Goal / Task subset · +68.8 pp</span></div>
+              <p class="media-note">Paper Task 1: 16% → 90%. The subset score above averages all 10 Goal / Task tasks.</p>
+            </div>
+          </div>
+          <div role="tabpanel" id="panel-spatial" aria-labelledby="tab-spatial" hidden="">
+            <div class="demo-group composite-demo" data-demo-group="">
+              <div class="demo-heading"><h4>Pick up the black bowl next to the ramekin and place it on the plate</h4><div class="demo-controls"></div></div>
+              <div class="comparison-legend"><span>Pure VLA<small>Placement failure</small></span><span>HarnessPAI<small>Success</small></span></div>
+              <video controls="" playsinline="" preload="none" width="1024" height="588" poster="assets/images/pro-spatial-comparison.webp" aria-label="Spatial swap: VLA placement fails on the left; HarnessPAI succeeds on the right"><source src="assets/videos/pro-spatial-comparison.mp4" type="video/mp4"></video>
+              <div class="demo-metric"><strong>51.8% → 93.8%</strong><span>Spatial / Swap subset · +42.0 pp</span></div>
+              <p class="media-note">Paper Task 1: 50% → 100%. The subset score above averages all 10 Spatial / Swap tasks.</p>
+            </div>
+          </div>
+        </div>
+        <p class="media-note">All three comparisons use 2× source playback, with pure VLA on the left and HarnessPAI on the right. Each pair shares a task, not a verified identical initial state. Masked observations are preserved. Shorter clips hold their final frame with an explicit end label.</p>
+        
+      </article>
+
+      <article id="robocasa" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">KITCHEN MANIPULATION · WORLD ACTION MODEL</p><h3>RoboCasa</h3></div><span class="result-callout">+27.2 <small>percentage points</small></span></div>
+        <p>Explicit perception and geometric control complement WorldDreamer in kitchen tasks. On the evaluated Atomic-Seen subset, successful episodes increase from <strong>234 / 360 to 332 / 360</strong>.</p>
+        <div class="comparison-chart" role="img" aria-label="RoboCasa Atomic-Seen success: WorldDreamer 65 percent; HarnessPAI 92.2 percent">
+          <div class="chart-label"><span>Success rate · Atomic-Seen</span><span>0–100%</span></div>
+          <div class="bar-row"><span>WorldDreamer</span><div class="bar-track"><div class="bar baseline" style="--value:65%"></div></div><strong>65.0%</strong></div>
+          <div class="bar-row"><span>HarnessPAI</span><div class="bar-track"><div class="bar" style="--value:92.2%"></div></div><strong>92.2%</strong></div>
+        </div>
+        <div class="demo-group composite-demo" data-demo-group="">
+          <div class="demo-heading"><h4>Turn on the microwave · WorldDreamer vs. HarnessPAI</h4><div class="demo-controls"></div></div>
+          <div class="comparison-legend"><span>WorldDreamer<small>Failure</small></span><span>HarnessPAI<small>Success</small></span></div>
+          <video controls="" playsinline="" preload="none" width="768" height="460" poster="assets/images/microwave-comparison.webp" aria-label="TurnOnMicrowave comparison: WorldDreamer failure and HarnessPAI success"><source src="assets/videos/microwave-comparison.mp4" type="video/mp4"></video>
+          <div class="demo-metric"><strong>0% → 100%</strong><span>TurnOnMicrowave · +100 pp · 0/20 → 20/20 paper trials</span></div>
+          <p class="media-note">Task 16; source seed 53, layout 2, style 2. The +27.2 pp result is the manuscript’s 18-task, 20-trial-per-task aggregate, not a statistic computed from this pair. Different source sampling prevents a timing comparison.</p>
+        </div>
+        
+      </article>
+
+      <article id="robosuite" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">SINGLE-ARM &amp; BIMANUAL · GRASPNET</p><h3>robosuite</h3></div><span class="result-callout">+15.3<small>pp over ASPIRE · cross-paper</small></span></div>
+        <p>Seven tasks test grasping, insertion, stacking, wiping, and two-arm coordination. HarnessPAI reaches 100% on five tasks, 91% on two-arm lifting, and 83% on insertion.</p>
+        <figure class="paper-figure"><div class="figure-image"><img src="assets/images/robosuite-results.webp" alt="Per-task robosuite success rates for HarnessPAI and reported reference methods" width="2200" height="818" loading="lazy" data-zoom=""></div><figcaption>81.0% → 96.3% average success. External baselines are taken from the ASPIRE paper, as cited in the manuscript.</figcaption></figure>
+        <div class="success-gallery">
+          <figure><div class="video-label"><span class="ours-dot"></span> Restack <small>2× playback</small></div><video controls="" playsinline="" preload="none" width="320" height="396" poster="assets/images/robosuite-restack-success.webp" aria-label="Successful HarnessPAI Restack episode 1"><source src="assets/videos/robosuite-restack-success.mp4" type="video/mp4"></video><figcaption><strong>100% success · matches ASPIRE</strong><br>ASPIRE reference: 100%. Selected episode 1.</figcaption></figure>
+          <figure><div class="video-label"><span class="ours-dot"></span> Two-arm lift <small>1× playback</small></div><video controls="" playsinline="" preload="none" width="320" height="396" poster="assets/images/robosuite-lift-success.webp" aria-label="Successful HarnessPAI two-arm lift"><source src="assets/videos/robosuite-lift-success.mp4" type="video/mp4"></video><figcaption><strong>91% success · +20 pp</strong><br>ASPIRE reference: 71%.</figcaption></figure>
+          <figure><div class="video-label"><span class="ours-dot"></span> Two-arm handover <small>4× playback</small></div><video controls="" playsinline="" preload="none" width="320" height="396" poster="assets/images/robosuite-handover-success.webp" aria-label="Successful HarnessPAI two-arm handover"><source src="assets/videos/robosuite-handover-success.mp4" type="video/mp4"></video><figcaption><strong>100% success · +8 pp</strong><br>ASPIRE reference: 92%.</figcaption></figure>
+        </div>
+        <p class="media-note">Successful rollouts only. Rate differences are cross-paper comparisons, not a pure-model ablation. Original recordings are 224 × 224 pixels.</p>
+        
+      </article>
+
+      <article id="libero" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">STANDARD MANIPULATION · VLA</p><h3>LIBERO</h3></div><span class="result-callout">+1.2<small>pp · standard-suite average</small></span></div>
+        <p>The harness also improves a strong starting point: π<sub>0.5</sub> rises from 96.9% to 98.1% across Spatial, Object, and Goal.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="LIBERO results by suite"><table class="results-table compact-table"><thead><tr><th scope="col">Method</th><th scope="col">Spatial</th><th scope="col">Object</th><th scope="col">Goal</th><th scope="col">Overall</th></tr></thead><tbody><tr><th scope="row">π<sub>0.5</sub></th><td>95.6%</td><td>100%</td><td>95.2%</td><td>96.9%</td></tr><tr class="highlight-row"><th scope="row">HarnessPAI</th><td>97.2%</td><td>100%</td><td>97.2%</td><td class="ours">98.1%</td></tr></tbody></table></div>
+        <div class="result-media-row">
+          <figure class="success-feature"><div class="video-label"><span class="ours-dot"></span> Alphabet soup → basket · Object / Base</div><video controls="" playsinline="" preload="none" width="512" height="512" poster="assets/images/libero-harness.webp" aria-label="Standard LIBERO HarnessPAI successful soup placement"><source src="assets/videos/libero-harness.mp4" type="video/mp4"></video><figcaption>Standard-task success, Object / Base, task 0. The base policy is already at 100% on this suite.</figcaption></figure>
+          <div class="result-context"><p class="case-label">BEYOND FAMILIAR SCENES</p><h4>What changes when the instruction or layout changes?</h4><p>The “not between” comparison and the changed plate location are presented in Motivation. Those are Task / Swap perturbations, separate from the standard-suite result above.</p><a class="text-link" href="#motivation-grounding">Instruction and scene perturbations <i data-lucide="arrow-up-right"></i></a></div>
+        </div>
+        
+      </article>
+
+      <article id="behavior" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">MOBILE HOUSEHOLD MANIPULATION · GRASPNET</p><h3>BEHAVIOR-1K</h3></div><span class="result-callout">+20<small>pp · soda-can adaptation</small></span></div>
+        <p>A humanoid upper body on a mobile base must first reach an object, then pick it up. Program adaptation repairs the gap between navigation and end-to-end completion on two household tasks.</p>
+        <div class="inline-facts"><span><b>84% → 100%</b> Pick up radio</span><span><b>72% → 92%</b> Pick up soda can</span></div>
+        <div class="result-media-row">
+          <figure class="success-feature"><div class="video-label"><span class="ours-dot"></span> Pick up the blue soda can <small>4× playback</small></div><video controls="" playsinline="" preload="none" width="512" height="588" poster="assets/images/behavior-soda-success.webp" aria-label="BEHAVIOR-1K successful navigation and pickup of the blue soda can"><source src="assets/videos/behavior-soda-success.mp4" type="video/mp4"></video><figcaption>One complete successful rollout, seed 1, egocentric view. Navigation, approach, and grasp are retained.</figcaption></figure>
+          <div class="result-context"><p class="case-label">FROM NAVIGATION TO COMPLETION</p><h4>Reach the object. Finish the task.</h4><p>The final soda-can program completes 23 of 25 evaluated trials. Eight adaptation rounds improve task success from 72% to 92% on the evaluated seeds.</p><p class="small-note">The reference is the zero-shot program, not a pure-model baseline or an unseen-seed comparison.</p></div>
+        </div>
+        <figure class="paper-figure"><div class="figure-image"><img src="assets/images/behavior-adaptation.webp" alt="BEHAVIOR-1K adaptation over eight rounds: radio task success improves from 84 to 100 percent, soda-can task success from 72 to 92 percent; navigation remains at 100 and 92 percent" width="2200" height="978" loading="lazy" data-zoom=""></div><figcaption>Navigation and end-to-end task success during program adaptation.</figcaption></figure>
+        
+        <details class="protocol"><summary>Evaluation protocol<i data-lucide="plus"></i></summary><div class="detail-body"><p>The initial program is evolved on seeds 26–35 and tested zero-shot on seeds 1–25. Eight further rounds adapt it on previously failing seeds within 1–25. Navigation remains at 100% for radio and 92% for soda can throughout these rounds.</p><figure class="paper-figure"><div class="figure-image"><img src="assets/images/behavior-results.webp" alt="BEHAVIOR-1K reference comparisons, separating navigation from end-to-end task success" width="2200" height="757" loading="lazy" data-zoom=""></div><figcaption>Reported reference comparisons use the respective protocols described in the manuscript.</figcaption></figure></div></details>
+      </article>
+
+      <article id="vacusim" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">COVERAGE &amp; NAVIGATION · CONTROL API</p><h3>VacuSim</h3></div><span class="result-callout">63.76<small>% coverage · 40 × 40</small></span></div>
+        <p>No learned action model is required here. A differential-drive vacuum uses velocity commands and read-only sensor feedback; supervisor-measured cleaning progress guides program evolution.</p>
+        <div class="inline-facts"><span><b>4.90% → 63.76%</b> Unfurnished · 40 × 40</span><span><b>11.7% → 53.92%</b> Furnished · 25 × 25</span><span><b>73.06%</b> Furnished cleanable ceiling</span></div>
+        <div class="vacusim-layout">
+          <figure><div class="video-label"><span class="ours-dot"></span> Furnished · 25 × 25 <small>30× playback</small></div><video controls="" playsinline="" preload="none" width="572" height="520" poster="assets/images/vacusim-furnished-final.webp" aria-label="Central simulation scene of the furnished 25 by 25 VacuSim apartment, accelerated to 29.47 seconds"><source src="assets/videos/vacusim-furnished-final.mp4" type="video/mp4"></video><figcaption><strong>53.92% final coverage.</strong> Central simulation view from the same recording; application controls and inset map cropped out. 29.47 seconds at 30× source playback.</figcaption></figure>
+          <figure><div class="video-label"><span class="ours-dot"></span> Unfurnished · 40 × 40 <small>2× playback</small></div><video controls="" playsinline="" preload="none" width="572" height="520" poster="assets/images/vacusim-coverage-final.webp" aria-label="Central simulation scene of the unfurnished 40 by 40 VacuSim reference recording, accelerated to 22.23 seconds"><source src="assets/videos/vacusim-coverage-final.mp4" type="video/mp4"></video><figcaption><strong>Same reference recording, central scene only.</strong> Loading trimmed; 22.23 seconds at 2× source playback. This recording ends at 62.91% coverage; the paper reports 63.76% for its evaluated run.</figcaption></figure>
+        </div>
+        <figure class="paper-figure"><div class="figure-image"><img src="assets/images/vacusim-results.webp" alt="cleaning coverage over time, 63.76 percent in the unfurnished map and 11.72 to 53.92 percent in the furnished map" width="2200" height="829" loading="lazy" data-zoom=""></div><figcaption><span></span> Left: unfurnished 40 × 40, final coverage 63.76%. Right: furnished 25 × 25, initial policy 11.72% → evolved policy 53.92%; the physically cleanable ceiling is 73.06%.</figcaption></figure>
+        
+        <p class="media-note">Playback multipliers refer to the original recordings, not simulation time. The two maps have different time budgets and attainable coverage. No improvement over the strongest 40 × 40 baseline is inferred from the plot.</p>
+        <details class="protocol"><summary>Campaign evolution and evaluation scope<i data-lucide="plus"></i></summary><div class="detail-body"><p>Coverage is measured by the ground supervisor, not planner-side tile counts. The unfurnished 40 × 40 map improves from 4.90% to 63.76%; the furnished 25 × 25 map improves from an initial-policy coverage of 11.7% to 53.92%.</p><figure class="paper-figure"><div class="figure-image"><img src="assets/images/vacusim-evolution.webp" alt="VacuSim evolution: coverage improves from 4.90 to 63.76 percent on the 40 by 40 map and from 11.7 to 53.92 percent on the 25 by 25 map" width="2152" height="815" loading="lazy" data-zoom=""></div><figcaption><span></span> Campaign-level evolution under the two map settings.</figcaption></figure><p>Each outer round selects a technical direction, explored through isolated candidates with its own Skill and Code memory. Three valid attempts without improvement retire that direction; bounded combinations of validated skills are tested before moving to another direction. Failed candidates remain diagnostic evidence without overwriting the retained program.</p></div></details>
+      </article>
+
+      <article id="microduck" class="experiment">
+        <div class="experiment-heading"><div><p class="eyebrow">LEGGED LOCOMOTION · FROZEN PPO</p><h3>MicroDuck</h3></div><span class="result-callout">Near zero<small>lateral error · paper trajectory</small></span></div>
+        <p>The learned Walker policy advances but drifts sideways. HarnessPAI measures the heading error and steers the same policy back toward the line, without retraining the Walker.</p>
+        <figure class="paper-figure"><div class="figure-image"><img src="assets/images/microduck-results.webp" alt="MicroDuck manuscript experiment: over 4 meters of forward progress, the pure policy drifts up to 0.8 meters while the harness keeps lateral error near zero and reaches the goal" width="2200" height="714" loading="lazy" data-zoom=""></div><figcaption>Reported straight-line experiment: up to 0.8 m lateral drift for the pure policy over 4 m of forward progress, versus near-zero lateral error with HarnessPAI. The manuscript reports trajectory error and goal distance, not a batch success rate.</figcaption></figure>
+        <div class="result-media-row">
+          <figure class="success-feature"><div class="video-label"><span class="ours-dot"></span> Walk to the ball <small>4.5× playback</small></div><video controls="" playsinline="" preload="none" width="480" height="436" poster="assets/images/microduck-walk-fast.webp" aria-label="Supplementary MicroDuck straight-line walking and ball contact in a 9.33-second accelerated video"><source src="assets/videos/microduck-walk-fast.mp4" type="video/mp4"></video><figcaption>Supplementary demonstration. The full source recording is accelerated to 9.33 seconds, retaining ball contact.</figcaption></figure>
+          <div class="result-context"><p class="case-label">SUPPLEMENTARY DEMONSTRATIONS</p><h4>Keep the frozen walker on course.</h4><p>The videos illustrate straight-line walking with ball contact, commanded head motion while balancing, and walking on stilts. They are separate from the manuscript’s straight-line trajectory above.</p><p class="small-note">These selected demonstrations carry no additional success-rate or percentage-improvement claims.</p></div>
+        </div>
+        <div class="demo-group composite-demo full-composite" data-demo-group="">
+          <div class="demo-heading"><h4>Balance on the ball and nod on command</h4><div class="demo-controls"></div></div>
+          <div class="comparison-legend"><span>Frozen policy<small>0 requested nods</small></span><span>HarnessPAI<small>3 requested nods</small></span></div>
+          <video controls="" playsinline="" preload="none" width="1280" height="436" poster="assets/images/microduck-nod-comparison.webp" aria-label="MicroDuck balancing: frozen policy makes no requested nods; HarnessPAI performs three nods"><source src="assets/videos/microduck-nod-comparison.mp4" type="video/mp4"></video>
+          <p class="media-note">Supplementary comparison, 1× source playback. Front and side views show a fixed head for the frozen policy and commanded nodding with HarnessPAI. Both robots remain standing in this selected recording; the visible nod counts are clip observations, not manuscript success statistics.</p>
+        </div>
+        <div class="demo-group composite-demo" data-demo-group="">
+          <div class="demo-heading"><h4>Walk on stilts and contact the ball</h4><div class="demo-controls"></div></div>
+          <div class="comparison-legend"><span>Frozen policy<small>Misses the ball</small></span><span>HarnessPAI<small>Ball contact</small></span></div>
+          <video controls="" playsinline="" preload="none" width="960" height="436" poster="assets/images/microduck-stilts-comparison.webp" aria-label="MicroDuck on stilts: pure policy veers past the ball, while HarnessPAI reaches it"><source src="assets/videos/microduck-stilts-comparison.mp4" type="video/mp4"></video>
+          <p class="media-note">Supplementary comparison, 1× source playback. The pure policy veers past the ball; the feedback-guided policy reaches it. No quantitative improvement is attributed to this selected pair.</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="analysis" class="section band" aria-labelledby="analysis-title">
+      <div class="container">
+        <div class="section-heading"><span class="section-number">05 / FURTHER ANALYSIS</span><h2 id="analysis-title">What persists beyond one rollout?</h2></div>
+        <details class="analysis-detail" id="analysis-transfer"><summary><span><small>TRANSFER</small> A new action backend. The same harness.</span><i data-lucide="plus"></i></summary><div class="detail-body"><p>A harness evolved with π<sub>0.5</sub> is reused with DreamZero on LIBERO-PRO Object, without re-evolution.</p><dl class="transfer-scores"><div><dt>Swap</dt><dd>0.6% <span>→</span> <b>73.4%</b></dd></div><div><dt>Task</dt><dd>9.6% <span>→</span> <b>84.4%</b></dd></div></dl><p class="small-note">Object suite only. These are not averages across all three LIBERO-PRO suites.</p></div></details><details class="analysis-detail" id="analysis-execution"><summary><span><small>EXECUTION</small> Reason during development. Run the retained program.</span><i data-lucide="plus"></i></summary><div class="detail-body"><p>Fixed-program execution removes online high-level LLM deliberation. Perception, action inference, simulation, and hardware still have costs.</p><dl class="transfer-scores"><div><dt>Swap · serial</dt><dd><b>23.1×</b> speedup</dd></div><div><dt>Task · serial</dt><dd><b>18.4×</b> speedup</dd></div></dl><p class="small-note">Reported serial execution speedups on LIBERO-Goal Task 1 relative to Harness VLA, under Swap and Task perturbations. This is not a program-development or lifecycle-cost estimate.</p></div></details>
+        <details class="analysis-detail"><summary><span><small>SKILL MEMORY</small> Repair knowledge supports faster revision</span><i data-lucide="plus"></i></summary><div class="detail-body"><p>With the skill library, three representative LIBERO-PRO Object tasks reach 100% development-batch success within the first two rounds. Without it, the observed trajectories include delayed jumps, oscillation, and gradual improvement.</p><figure class="paper-figure"><div class="figure-image"><img src="assets/images/evolution.webp" alt="Program evolution curves for three representative tasks, comparing access to a skill library against no skill library" width="2200" height="796" loading="lazy" data-zoom=""></div><figcaption>Object tasks 0, 1, and 5. Each development score pools 15 seeds under Swap and Task, for 30 seed-condition rollouts. These curves are not held-out cross-task transfer evidence.</figcaption></figure></div></details>
+        <details class="analysis-detail" id="post-training"><summary><span><small>POST-TRAINING</small> Evolved code as an efficient demonstration collector</span><i data-lucide="plus"></i></summary><div class="detail-body">
+          <p><strong>Evolution produces more than a capable policy wrapper: it produces a reusable source of training data.</strong> Once validated, the converged code can run repeatedly across layouts and instructions without high-level LLM deliberation at every step. An environment-success gate turns reliable execution into demonstrations for the action model.</p>
+          <ol class="collector-process"><li><h4>Reuse evolved code</h4><p>Retain the task program after evolution and validation.</p></li><li><h4>Collect rollouts</h4><p>Re-run the same program under base, Swap, and Task conditions.</p></li><li><h4>Keep successes</h4><p>Retain trajectories that pass the environment task-success check; discard failures.</p></li><li><h4>Post-train the model</h4><p>Fine-tune on successful demonstrations to transfer corrections into model weights.</p></li></ol><div class="table-scroll collector-evidence" tabindex="0" role="region" aria-label="Evidence for efficient, reliable collection">
+          <table class="results-table compact-table"><caption>Why collect training trajectories with evolved code?</caption>
+          <thead><tr><th scope="col">Advantage</th><th scope="col">Reported evidence</th><th scope="col">Value for collection</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Efficient execution</th><td><strong>23.1× / 18.4×</strong> serial speedup</td><td>Lower repeated-execution overhead than Harness VLA on LIBERO-Goal Task 1 under Swap / Task.</td></tr>
+            <tr><th scope="row">No stepwise deliberation</th><td><strong>0</strong> online high-level LLM API charge</td><td>Fixed code needs no stepwise high-level reasoning calls. Perception, action inference, simulation, and hardware still have costs.</td></tr>
+            <tr><th scope="row">Success filtering</th><td>Environment-confirmed successful trajectories only</td><td>The collector need not succeed on every seed: failed attempts are excluded from the demonstrations.</td></tr>
+          </tbody></table></div><p class="collector-outcome"><strong>The collected trajectories improve the underlying model.</strong> The following post-training experiment is separate from the main results, which evolve code around a frozen action model.</p>
+          <div class="demo-metric"><strong>34.9% → 73.7%</strong><span>π<sub>0.5</sub>-LIBERO · +38.8 pp after full-mixture fine-tuning</span></div>
+          <p>The full mixture samples all three suites under base, Swap, and Task in equal proportion across nine categories. π<sub>0.5</sub>-Base improves from near zero to 53.3%. Both results use each model’s best checkpoint within 30,000 training steps.</p>
+          <figure class="paper-figure"><div class="figure-image"><img src="assets/images/post-training-mixture.webp" alt="Full-mixture post-training curves for pi0.5-Base and pi0.5-LIBERO on held-out LIBERO-PRO seeds under Swap and Task" width="2187" height="1582" loading="lazy" data-zoom=""></div><figcaption>Full-mixture post-training. Evaluate all three suites under Swap and Task, 60 perturbed tasks in total.</figcaption></figure>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Per-suite post-training results"><table class="results-table compact-table"><caption>Separate per-suite fine-tuning · best checkpoint within 15,000 steps</caption><thead><tr><th scope="col">Suite</th><th scope="col">Before fine-tuning</th><th scope="col">After fine-tuning</th></tr></thead><tbody><tr><th scope="row">Object</th><td>21.5%</td><td class="ours">88.0%</td></tr><tr><th scope="row">Spatial</th><td>50.0%</td><td class="ours">82.5%</td></tr><tr><th scope="row">Goal</th><td>32.5%</td><td class="ours">54.5%</td></tr></tbody></table></div>
+          <figure class="paper-figure"><div class="figure-image"><img src="assets/images/post-training-suites.webp" alt="Per-suite post-training curves on Object, Spatial, and Goal under Swap and Task, with equal base, Swap, and Task training mixtures" width="2194" height="805" loading="lazy" data-zoom=""></div><figcaption>Per-suite fine-tuning mixes base, Swap, and Task trajectories 1:1:1, then evaluates on that suite’s Swap and Task conditions.</figcaption></figure>
+          <p class="small-note">For each task, seeds 0–39 supply the additional fine-tuning data; seeds 40–49 are held out for evaluation. Reported maxima follow the manuscript’s best-checkpoint convention, not final-step performance.</p>
+        </div></details>
+        <details class="analysis-detail"><summary><span><small>SCOPE</small> Repeated tasks, explicit validation, bounded claims</span><i data-lucide="plus"></i></summary><div class="detail-body"><p>HarnessPAI targets repeated-task settings where a task program can be developed, evaluated, and reused. It is not demonstrated as a universal one-shot solution to unseen tasks. Performance depends on the available primitives, perception quality, success contract, and evolution budget.</p><p>Reference methods and metrics differ across experiments: task success, floor coverage, and lateral error measure their respective task objectives.</p></div></details>
+      </div>
+    </section>
+
+    <section id="citation" class="section container citation-section" aria-labelledby="citation-title">
+      <div class="section-heading"><span class="section-number">06 / CITATION</span><h2 id="citation-title">Citation</h2></div>
+      <div class="citation-placeholder"><i data-lucide="quote"></i><div><h3>Coming soon</h3><p>Publication details and the official citation will be added when available.</p></div><span class="status-tag">Not yet released</span></div>
+    </section>
+  </main>
+  <footer><div class="container footer-inner"><a class="brand" href="#top">Harness<span>PAI</span></a><span>Darwin Agent</span><a href="#top">Back to top <i data-lucide="arrow-up-right"></i></a></div></footer>
+  <dialog class="image-dialog" aria-labelledby="image-dialog-caption">
+    <div class="dialog-toolbar"><p id="image-dialog-caption">Figure</p><button class="icon-button zoom-toggle" aria-label="View image at full size" title="View image at full size"><i data-lucide="zoom-in"></i></button><button class="icon-button dialog-close" aria-label="Close figure" title="Close figure"><i data-lucide="x"></i></button></div>
+    <div class="dialog-image-area"><img alt="" src="assets/images/framework.webp"></div>
+  </dialog>
+
+
+
+</body></html>
