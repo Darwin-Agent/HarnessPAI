@@ -287,11 +287,15 @@ video { display: block; width: 100%; height: auto; background: #111317; border-r
 .training-flow span { font-weight: 700; color: var(--ink); font-size: 12px; }
 .training-flow svg { color: var(--accent); }
 .citation-section { padding-block: 66px; }
-.citation-placeholder { display: flex; align-items: center; gap: 20px; padding-block: 25px; border-block: 1px solid var(--line); }
-.citation-placeholder > svg { width: 30px; height: 30px; color: var(--accent); }
-.citation-placeholder h3 { font-size: 15px; }
-.citation-placeholder p { color: var(--muted); font-size: 12px; margin-top: 5px; }
+.citation-meta { display: flex; align-items: center; gap: 20px; padding-block: 25px; border-top: 1px solid var(--line); }
+.citation-meta > svg { width: 30px; height: 30px; color: var(--accent); flex: none; }
+.citation-meta h3 { font-size: 15px; }
+.citation-meta p { color: var(--muted); font-size: 12px; margin-top: 5px; }
+.citation-code { margin-top: 22px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 4px; background: var(--soft); overflow-x: auto; }
+.citation-code code { font: 12.5px/1.8 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--ink); white-space: pre; }
 .status-tag { margin-left: auto; color: var(--muted); background: var(--soft); font-size: 10px; padding: 4px 9px; white-space: nowrap; border-radius: 3px; }
+a.status-tag { text-decoration: none; }
+a.status-tag:hover { color: var(--accent-text); background: var(--accent-soft); }
 footer { border-top: 1px solid var(--line); background: var(--soft); }
 .footer-inner { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .footer-inner > span { color: var(--muted); font-size: 12px; }
@@ -459,9 +463,11 @@ footer { border-top: 1px solid var(--line); background: var(--soft); }
   .analysis-detail summary { font-size: 12px; }
   .training-flow { flex-direction: column; gap: 12px; align-items: flex-start; }
   .training-flow svg { transform: rotate(90deg); }
-  .citation-placeholder { gap: 14px; flex-wrap: wrap; }
-  .citation-placeholder > div { flex: 1; }
-  .citation-placeholder p { font-size: 11px; }
+  .citation-meta { gap: 14px; flex-wrap: wrap; }
+  .citation-meta > div { flex: 1; }
+  .citation-meta p { font-size: 11px; }
+  .citation-code { padding: 16px; }
+  .citation-code code { font-size: 11px; }
   .status-tag { margin-left: 44px; }
   .footer-inner { flex-wrap: wrap; padding-block: 23px; gap: 12px; min-height: 0; }
   .footer-inner > span { font-size: 10px; }

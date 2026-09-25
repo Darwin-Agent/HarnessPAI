@@ -8,13 +8,13 @@
 
 <p>
   <a href="https://darwin-agent.github.io/HarnessPAI/"><img alt="Homepage" src="https://img.shields.io/badge/Homepage-HarnessPAI-ff6900?style=flat"/></a>
-  <a href="assets/HarnessPAI_DarwinAgent.pdf"><img alt="Paper" src="https://img.shields.io/badge/Paper-PDF-3b82f6?style=flat"/></a>
+  <a href="https://arxiv.org/abs/2609.29166"><img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-3b82f6?style=flat"/></a>
   <img alt="Code: Coming soon" src="https://img.shields.io/badge/Code-Coming%20soon-f59e0b?style=flat"/>
 </p>
 
 <p>
   <a href="https://darwin-agent.github.io/HarnessPAI/">Homepage</a> •
-  <a href="assets/HarnessPAI_DarwinAgent.pdf">Paper</a> •
+  <a href="https://arxiv.org/abs/2609.29166">Paper</a> •
   <a href="#overview">Overview</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#results">Results</a> •
@@ -76,7 +76,7 @@ Workflow-graph extraction from demonstration videos, action-model capability ass
 
 > **“Open-loop” refers to the program level, not to blind execution.** The program stays fixed within a rollout, but it can still use current observations, feedback control, predefined checks, and recovery logic. Program edits happen between rollouts. Avoiding online high-level LLM deliberation does **not** mean avoiding perception or action-model inference.
 
-See **Section 4 of the [paper](assets/HarnessPAI_DarwinAgent.pdf)** for the full framework and evolution mechanism.
+See **Section 4 of the [paper](https://arxiv.org/abs/2609.29166)** for the full framework and evolution mechanism.
 
 
 <a id="results"></a>
@@ -141,9 +141,16 @@ This is currently a **paper and project-page repository**, not an installable fr
 **HarnessPAI: An Evolving Harness for Physical AI**<br/>
 Darwin Agent Team
 
-**[Read the paper](assets/HarnessPAI_DarwinAgent.pdf)** · **[Explore the project](https://darwin-agent.github.io/HarnessPAI/)**
+**[Read the paper](https://arxiv.org/abs/2609.29166)** · **[Explore the project](https://darwin-agent.github.io/HarnessPAI/)**
 
-Formal publication details and the official BibTeX entry will be added when available.
+```bibtex
+@article{wang2026harnesspai,
+  title   = {{HarnessPAI}: An Evolving Harness for Physical AI},
+  author  = {Xin Wang and Wenhao Wu and Menghao Zhang and Zhi Wang and Kun Shao and Jian Luan and Yang Li and Qing Li and Shangding Gu and Huichi Zhou and Shuqing Shi and Fei Ni and Shuo Lu and Weicheng Meng and Kang Li and Jin Wu and Kang Zhao and Shangmin Guo and Gen Li and Yongqiang Tang and Zhizhong Zhang and Yuan Xie and Heng Qu},
+  journal = {arXiv preprint arXiv:2609.29166},
+  year    = {2026}
+}
+```
 
 
 <div align="center">

@@ -9,13 +9,13 @@
 
 <p>
   <a href="https://darwin-agent.github.io/HarnessPAI/"><img alt="项目主页" src="https://img.shields.io/badge/Homepage-HarnessPAI-ff6900?style=flat"/></a>
-  <a href="assets/HarnessPAI_DarwinAgent.pdf"><img alt="论文 PDF" src="https://img.shields.io/badge/Paper-PDF-3b82f6?style=flat"/></a>
+  <a href="https://arxiv.org/abs/2609.29166"><img alt="论文 arXiv" src="https://img.shields.io/badge/Paper-arXiv-3b82f6?style=flat"/></a>
   <img alt="代码：尚未公开" src="https://img.shields.io/badge/Code-Coming%20soon-f59e0b?style=flat"/>
 </p>
 
 <p>
   <a href="https://darwin-agent.github.io/HarnessPAI/">项目主页</a> •
-  <a href="assets/HarnessPAI_DarwinAgent.pdf">论文</a> •
+  <a href="https://arxiv.org/abs/2609.29166">论文</a> •
   <a href="#overview">项目概览</a> •
   <a href="#architecture">框架设计</a> •
   <a href="#results">实验结果</a> •
@@ -77,7 +77,7 @@
 
 > **“开环”指程序级开环，不代表忽略环境反馈。** 单次执行期间程序保持不变，但仍可使用实时观测、反馈控制、预设检查与恢复逻辑；程序修改发生在多次执行之间。无需在线高层 LLM 推理，也**不等于**无需感知或动作模型推理。
 
-完整框架与演化机制见**[论文](assets/HarnessPAI_DarwinAgent.pdf)第 4 节**。
+完整框架与演化机制见**[论文](https://arxiv.org/abs/2609.29166)第 4 节**。
 
 
 <a id="results"></a>
@@ -142,7 +142,16 @@ HarnessPAI 面向能够开发、验证并复用程序的**重复任务场景**�
 **HarnessPAI: An Evolving Harness for Physical AI**<br/>
 Darwin Agent Team
 
-**[阅读论文](assets/HarnessPAI_DarwinAgent.pdf)** · **[访问项目主页](https://darwin-agent.github.io/HarnessPAI/)**
+**[阅读论文](https://arxiv.org/abs/2609.29166)** · **[访问项目主页](https://darwin-agent.github.io/HarnessPAI/)**
+
+```bibtex
+@article{wang2026harnesspai,
+  title   = {{HarnessPAI}: An Evolving Harness for Physical AI},
+  author  = {Xin Wang and Wenhao Wu and Menghao Zhang and Zhi Wang and Kun Shao and Jian Luan and Yang Li and Qing Li and Shangding Gu and Huichi Zhou and Shuqing Shi and Fei Ni and Shuo Lu and Weicheng Meng and Kang Li and Jin Wu and Kang Zhao and Shangmin Guo and Gen Li and Yongqiang Tang and Zhizhong Zhang and Yuan Xie and Heng Qu},
+  journal = {arXiv preprint arXiv:2609.29166},
+  year    = {2026}
+}
+```
 
 
 <div align="center">
